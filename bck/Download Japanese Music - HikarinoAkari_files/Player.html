@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0542)http://radiotuna.com/OnlineRadioPlayer/Player?showPopupControl=true&playerParams={%27styleSelection0%27:0,%27styleSelection1%27:0,%27styleSelection2%27:0,%27textColor%27:0,%27backgroundColor%27:15592941,%27buttonColor%27:16744626,%27glowColor%27:16744626,%27playerSize%27:200,%27userGuid%27:%2792c5445a-0c9c-4003-b91f-93674de68f73%27,%27streamId%27:64920,%27playerTitleText%27:%27Animeinfo%20Radio%27,%27playerType%27:%27singleStation%27}&referrer=http%3A%2F%2Fhikarinoakariost.info%2F&linkText=internet%20radio&linkDest=http://radiotuna.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	Online Radio Player | RadioTuna
+</title><meta name="language" content="en"><meta name="description" content="Online radio player from Radio Tuna. Add great internet radio stations and music to your website for free. Design your player, choose your music and embed the html code."><script type="text/javascript" src="saved_resource(2)"></script>
+    <script type="text/javascript">
+        function registerReferrer()
+        {
+            if(referrer!=null)
+            {
+                try
+                {
+                    pageTracker._trackEvent("embeddedReferrers", "onlineradioplayer", referrer);
+                }
+                catch(err)
+                {
+                }
+            }
+        }
+
+
+        function getMovie(movieName)
+        {
+            var movie = document.getElementById(movieName);
+            movie = (movie == null) ? document[movieName] : movie;
+            movie = (movie == null) ? window[movieName] : movie;
+            return movie;
+	
+        }
+
+
+        var logData=[];
+        function htmlEncode(value) {
+            return $('<div/>').text(value).html();
+        } 
+        function log(msg)
+        {
+            logData.push(msg);
+            $("#logWin").html(logData.map(function(x){return htmlEncode(x);}).join("<br/>"));
+        }
+
+        var flashPlayerVersion = swfobject.getFlashPlayerVersion();
+        var useExternalMediaPlayer = (flashPlayerVersion.major == 11 && flashPlayerVersion.minor == 4);
+        if (useExternalMediaPlayer) 
+        {
+            var mediaPlayer=new MediaPlayer('/',function(wr){
+                    var success=(wr!=null);
+                    log("mediaPlayer ready : "+success);
+                });
+                window.player_play=function(url,immediate)
+                {
+                    log("mediaPlayer play : "+url);
+                    mediaPlayer.play(url,function(success){
+                        log("mediaPlayer playing : "+success);
+                        getMovie("skin").onPlaying(success);
+                    })
+                };
+                window.player_stop=function(immediate)
+                {
+                    log("mediaPlayer stop");
+                    mediaPlayer.stop();
+                };
+                window.player_getGain=function()
+                {
+                    var vol=mediaPlayer.getVolume();
+                    log("mediaPlayer getGain returning : "+vol);
+                    return vol;
+                };
+                window.player_setGain=function(val)
+                {
+                    log("mediaPlayer setGain : "+val);
+                    mediaPlayer.setVolume(val);
+                };
+            }
+            var referrer=Base64.decode('aHR0cDovL2hpa2FyaW5vYWthcmlvc3QuaW5mby8=');
+
+        var playerParams="%7b%27styleSelection0%27%3a0%2c%27styleSelection1%27%3a0%2c%27styleSelection2%27%3a0%2c%27textColor%27%3a0%2c%27backgroundColor%27%3a15592941%2c%27buttonColor%27%3a16744626%2c%27glowColor%27%3a16744626%2c%27playerSize%27%3a200%2c%27userGuid%27%3a%2792c5445a-0c9c-4003-b91f-93674de68f73%27%2c%27streamId%27%3a64920%2c%27playerTitleText%27%3a%27Animeinfo+Radio%27%2c%27playerType%27%3a%27singleStation%27%7d";
+        var flashvars = {
+            "useExternalMediaPlayer":useExternalMediaPlayer,
+            "playerParams": playerParams,
+            "autoplay": false,
+            "unknownCoverArtUrl": "/Content/images/TunaLogoNew.png",
+            "cometUrls": "web1.radiotuna.com|web2.radiotuna.com",
+            "styleNameServiceUrl": "/StyleSearch/GetStyleNames",
+            "stationForStyleServiceUrl": "/StyleSearch/GetStationForStyle",
+            "referrerUrl":referrer,
+            "popupUrl":"/OnlineRadioPlayer",
+                "copyMeUrl":"/OnlineRadioPlayer/Intro?linkSrc=widget",
+            "channelChangerState":""
+        };
+
+        var params = {
+            menu: "false",
+            scale: "noScale",
+            allowFullscreen: "true",
+            allowScriptAccess: "always",
+            bgcolor: "#FFFFFF",
+            wmode: "transparent"
+        };
+        var attributes = {
+            name: "skin",
+            id: "skin"
+        };
+        
+        swfobject.embedSWF("/swf/RadioPlayer.swf?v=1.0.5599.37849", "playerDiv", "100%", "100%;", "8.0.0", "expressInstall.swf", flashvars, params, attributes);
+        
+
+
+    </script><style type="text/css" media="screen">#playerDiv {visibility:hidden}</style>
+    <style type="text/css">
+        html, body
+        {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: Transparent;
+        }
+
+        playerDiv
+        {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body onload="loadGoogleAnalytics(&#39;UA-11997556-1&#39;,registerReferrer)">
+    <div id="logWin" style="display: none;">log</div>
+    <object type="application/x-shockwave-flash" name="skin" id="skin" data="http://radiotuna.com/swf/RadioPlayer.swf?v=1.0.5599.37849" width="100%" height="100%;"><param name="menu" value="false"><param name="scale" value="noScale"><param name="allowFullscreen" value="true"><param name="allowScriptAccess" value="always"><param name="bgcolor" value="#FFFFFF"><param name="wmode" value="transparent"><param name="flashvars" value="useExternalMediaPlayer=false&amp;playerParams=%7b%27styleSelection0%27%3a0%2c%27styleSelection1%27%3a0%2c%27styleSelection2%27%3a0%2c%27textColor%27%3a0%2c%27backgroundColor%27%3a15592941%2c%27buttonColor%27%3a16744626%2c%27glowColor%27%3a16744626%2c%27playerSize%27%3a200%2c%27userGuid%27%3a%2792c5445a-0c9c-4003-b91f-93674de68f73%27%2c%27streamId%27%3a64920%2c%27playerTitleText%27%3a%27Animeinfo+Radio%27%2c%27playerType%27%3a%27singleStation%27%7d&amp;autoplay=false&amp;unknownCoverArtUrl=/Content/images/TunaLogoNew.png&amp;cometUrls=web1.radiotuna.com|web2.radiotuna.com&amp;styleNameServiceUrl=/StyleSearch/GetStyleNames&amp;stationForStyleServiceUrl=/StyleSearch/GetStationForStyle&amp;referrerUrl=http://hikarinoakariost.info/&amp;popupUrl=/OnlineRadioPlayer&amp;copyMeUrl=/OnlineRadioPlayer/Intro?linkSrc=widget&amp;channelChangerState="></object>
+    <div id="flashWrapperContainer" style="position: absolute; top: -1000px; left: -1000px;
+        width: 0.1px; height: 0.1px;">
+    </div>
+
+
+
+</body></html>
